@@ -8,11 +8,21 @@ const loadPost = () => {
     const url = "https://jsonplaceholder.typicode.com/posts";
     fetch(url)
     .then(res=>res.json())
-    .then(data=>displayPost(data))
+    .then(data=>displayPosts(data))
 }
 
-const displayPost = (posts) => {
+const displayPosts = (posts) => {
+    const postContainer = document.getElementById("post-container");
+    postContainer.innerHTML = '';
+
     posts.forEach(post => {
-        console.log(post);
+        const div = document.createElement('div');
+        div.innerHTML = `
+        <div class="post-card">
+            <h2>${post.title}</h2>
+            <p>${post.body}</p>
+        </div>
+        `;
+        postContainer.append(div);
     });
 }
